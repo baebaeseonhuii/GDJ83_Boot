@@ -16,7 +16,7 @@ class NoticeMapperTest {
 	
 	@Test
 	void getListTest() throws Exception {
-		List<NoticeVO> ar = noticeDAO.getList();
+		List<NoticeVO> ar = noticeDAO.getList(1L);
 		assertNotEquals(0, ar.size());
 		for(NoticeVO vo: ar) {
 			System.out.println(vo.toString());

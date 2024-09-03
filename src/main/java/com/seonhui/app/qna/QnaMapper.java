@@ -13,4 +13,8 @@ public interface QnaMapper {
 	
 	public int add(QnaVO qnaVO) throws Exception;
 	
+	public int refUpdate(QnaVO qnaVO) throws Exception;
+	
+	public QnaVO getDetail(QnaVO qnaVO) throws Exception;
+	
 }

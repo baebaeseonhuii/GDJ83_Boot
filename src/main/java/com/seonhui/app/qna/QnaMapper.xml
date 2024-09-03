@@ -21,11 +21,23 @@
 	 		</if>
  		</where>
  		
- 		ORDER BY BOARD_NUM
+ 		ORDER BY BOARD_NUM DESC
  		LIMIT #{startRow}, #{perPage}
  	</select>
  	
- 	<insert id="add" parameterType="QnaVO">
- 		INSERT INTO QNA VALUE(#{boardNum}, #{boardWriter}, #{boardTitle}, #{boardContents}, NOW(), #{ref}, 0,0)
+ 	<update id="refUpdate" parameterType="QnaVO">
+ 		UPDATE QNA SET REF=#{boardNum} where BOARD_NUM = #{boardNum}
+ 	</update>
+ 	
+ 	<insert id="add" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="boardNum">
+ 	
+ 		INSERT INTO QNA VALUES(#{boardNum}, #{boardWriter}, #{boardTitle}, #{boardContents}, NOW(), #{ref}, 0,0)
  	</insert>
+<!--  		<selectKey order="BEFORE" keyProperty="boardNum" resultType="Long">
+ 			SELECT SEQ.NEXTVAL FROM DUAL
+ 		</selectKey> -->
+ 		
+ 	<select id="getDetail" parameterType="QnaVO" resultType="QnaVO">
+ 		SELECT * FROM QNA WHERE BOARD_NUM=#{boardNum}
+ 	</select>
  </mapper>

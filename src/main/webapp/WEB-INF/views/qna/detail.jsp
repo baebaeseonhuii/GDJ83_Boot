@@ -20,17 +20,17 @@
 	</thead>
 	
 	<tbody>
-		<c:forEach items="${list}" var="vo">
+		
 			<tr>
-			<th>${vo.boardNum}</th>
-			<th>${vo.boardTitle}</th>
-			<th>${vo.boardWriter}</th>
-			<th>${vo.createDate}</th>
+			<th>${qnaVO.boardNum}</th>
+			<th>${qnaVO.boardTitle}</th>
+			<th>${qnaVO.boardWriter}</th>
+			<th>${qnaVO.createDate}</th>
 			</tr>
-		</c:forEach>
+		
 	</tbody>
 </table>
-<a href="./add">Add QNA</a>
+
 
 </body>
 </html>

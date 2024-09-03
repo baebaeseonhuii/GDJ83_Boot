@@ -48,5 +48,13 @@ class QnaMapperTest {
 		assertNotEquals(0, ar.size());
 		
 	}
+	
+	@Test
+	void getDetailTest()throws Exception {
+		QnaVO qnaVO = new QnaVO();
+		qnaVO.setBoardNum(100L);
+		qnaVO = qnaMapper.getDetail(qnaVO);
+		assertNotNull(qnaVO);
+	}
 
 }

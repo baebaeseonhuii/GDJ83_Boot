@@ -61,9 +61,14 @@
  		<result property="depth" column="DEPTH"/>
  		
  		<collection property="ar" javaType="java.util.List" ofType="QnaFileVO">
- 			<id property="fileNum" column="FILE_NUN"/>
+ 			<id property="fileNum" column="FILE_NUM"/>
  			<result property="fileName" column="FILE_NAME"/>
  			<result property="oriName" column="ORI_NAME"/>
  		</collection>
  	</resultMap>
+ 	
+ 	<select id="getFileDetail" parameterType="QnaFileVO" resultType="QnaFileVO">
+ 		SELECT * FROM QNAFILES WHERE FILE_NUM=#{fileNum}
+ 	</select>
+ 	
  </mapper>

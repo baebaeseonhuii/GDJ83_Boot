@@ -35,7 +35,10 @@
 
 <c:forEach items="${qnaVO.ar}" var="f">
 	<img alt="" src="/files/${board}/${f.fileName}">
+	<a href="./fileDown?fileNum=${f.fileNum}">${f.oriName}</a>
+	<h1>파일 넘버: ${f.fileNum}</h1>
 </c:forEach>
+
 
 
 </body>

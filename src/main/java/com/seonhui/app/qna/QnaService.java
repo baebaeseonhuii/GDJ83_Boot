@@ -23,7 +23,7 @@ public class QnaService {
 	@Autowired
 	private FileManager fileManager;
 	
-	@Value("${app.upload.location}")
+	@Value("${app.upload}")
 	private String upload;
 	
 	@Value("${board.qna}")
@@ -63,6 +63,10 @@ public class QnaService {
 	public QnaVO getDetail(QnaVO qnaVO) throws Exception {
 		return qnaMapper.getDetail(qnaVO);
 		
+	}
+	
+	public QnaFileVO getFileDetail(QnaFileVO qnaFileVO) throws Exception{
+		return qnaMapper.getFileDetail(qnaFileVO);
 	}
 	
 }

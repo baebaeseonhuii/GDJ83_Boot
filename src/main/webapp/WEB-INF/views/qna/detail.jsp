@@ -14,6 +14,7 @@
 		<tr>
 			<th>Num</th>
 			<th>Title</th>
+			<th>Contents</th>
 			<th>Writer</th>
 			<th>Date</th>
 		</tr>
@@ -24,12 +25,17 @@
 			<tr>
 			<th>${qnaVO.boardNum}</th>
 			<th>${qnaVO.boardTitle}</th>
+			<th>${qnaVO.boardContents}</th>
 			<th>${qnaVO.boardWriter}</th>
 			<th>${qnaVO.createDate}</th>
 			</tr>
 		
 	</tbody>
 </table>
+
+<c:forEach items="${qnaVO.ar}" var="f">
+	<img alt="" src="/files/${board}/${f.fileName}">
+</c:forEach>
 
 
 </body>

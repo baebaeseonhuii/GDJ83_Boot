@@ -23,7 +23,7 @@ public class QnaService {
 	@Autowired
 	private FileManager fileManager;
 	
-	@Value("${app.upload}")
+	@Value("${app.upload.location}")
 	private String upload;
 	
 	@Value("${board.qna}")
@@ -36,9 +36,9 @@ public class QnaService {
 	}
 	
 	public int add(QnaVO qnaVO, MultipartFile [] attaches) throws Exception {
-		log.info("===========Insert Before board num: {}", qnaVO.getBoardNum());
+		
 		int result = qnaMapper.add(qnaVO);
-		log.info("===========Insert After board num: {}", qnaVO.getBoardNum());
+		
 		result = qnaMapper.refUpdate(qnaVO);
 		
 		//파일을 HDD에 저장 후 DB에 정보를 추가
@@ -47,7 +47,13 @@ public class QnaService {
 				continue;
 			}
 			String fileName = fileManager.fileSave(upload+name, mf); //D:/upload/qna
-			log.info("저장된 파일명: {}",fileName);
+			
+			QnaFileVO qnaFileVO = new QnaFileVO();
+			qnaFileVO.setFileName(fileName);
+			qnaFileVO.setOriName(mf.getOriginalFilename());
+			qnaFileVO.setBoardNum(qnaVO.getBoardNum());
+			
+			result = qnaMapper.addFile(qnaFileVO);
 		}
 		
 		

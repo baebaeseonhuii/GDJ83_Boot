@@ -6,6 +6,8 @@ target/
 
 ### Custom ###
 application-db.properties
+application-prod.properties
+application-dev.properties
 
 ### STS ###
 .apt_generated
@@ -34,3 +36,4 @@ build/
 
 ### VS Code ###
 .vscode/
+src/main/resources/application-dev.properties

@@ -16,6 +16,7 @@ import com.seonhui.app.qna.QnaFileVO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+//BeanNameViewResolve
 @Component
 public class FileDownView extends AbstractView{
 	

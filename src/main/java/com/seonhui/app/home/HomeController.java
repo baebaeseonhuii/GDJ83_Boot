@@ -1,29 +1,24 @@
 package com.seonhui.app.home;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import lombok.extern.slf4j.Slf4j;
+import com.seonhui.app.aops.main.Start;
 
 @Controller
-@Slf4j
 public class HomeController {
+	
+	@Autowired
+	private Start start;
 
 	@GetMapping("/")
-	public String home()throws Exception {
+	public String home() throws Exception {
 		
-		// 세밀한 추적
-		log.trace("trace");
-		// 디버그
-		log.debug("debug");
-		// 일반적인 정보
-		log.info("info");
-		// 문제가 생길 경우 경보
-		log.warn("warning");
-		// 에러 발생 시
-		log.error("error");
+		start.go();
 		
 		return "index";
+		
 	}
 	
 }

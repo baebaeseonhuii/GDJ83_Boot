@@ -10,6 +10,7 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+// 어떤 언어로 왔을 때 어떻게 처리할 건지
 @Configuration
 public class MessageConfig implements WebMvcConfigurer{
 

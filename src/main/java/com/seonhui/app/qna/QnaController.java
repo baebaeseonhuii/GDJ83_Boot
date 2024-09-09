@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.seonhui.app.util.Pager;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.validation.Valid;
+import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -45,12 +48,16 @@ public class QnaController {
 	}
 	
 	@GetMapping("add")
-	public void add() throws Exception{
+	public void add(@ModelAttribute QnaVO qnaVO) throws Exception{
 		
 	}
 	
 	@PostMapping("add")
-	public String add(QnaVO qnaVO, MultipartFile [] attaches) throws Exception{
+	public String add(@Valid QnaVO qnaVO, BindingResult bindingResult , MultipartFile [] attaches) throws Exception{
+		if(bindingResult.hasErrors()) {
+			log.error("writer 비어있음");
+			return "qna/add";
+		}
 		int result = qnaService.add(qnaVO, attaches);
 		return "redirect:./list";
 	}

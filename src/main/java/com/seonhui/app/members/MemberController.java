@@ -81,16 +81,16 @@ public class MemberController {
 		
 	}
 	
-	@PostMapping("login")
-	public String login(MemberVO memberVO, HttpSession session) throws Exception {
-		memberVO = memberService.detail(memberVO);
-		
-		if(memberVO != null) {
-			session.setAttribute("member", memberVO);
-		}
-		
-		return "redirect:../";
-	}
+//	@PostMapping("login")
+//	public String login(MemberVO memberVO, HttpSession session) throws Exception {
+//		memberVO = memberService.detail(memberVO);
+//		
+//		if(memberVO != null) {
+//			session.setAttribute("member", memberVO);
+//		}
+//		
+//		return "redirect:../";
+//	}
 	
 	//logout
 	@GetMapping("logout")

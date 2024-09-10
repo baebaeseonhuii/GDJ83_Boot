@@ -36,7 +36,7 @@ public class TestSchedule {
 	//fixedDelay&fixedRate 차이점
 	//
 	
-	@Scheduled(cron = "*/5 * * * * *")
+	//@Scheduled(cron = "*/5 * * * * *")
 	public void test3() throws Exception {
 		log.error("=============Schedule test==============");
 		QnaVO qnaVO = new QnaVO();

@@ -14,6 +14,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity //기본 config 말고 내가 만든 config 사용
 public class SecurityConfig {
 	
+	// Security
+	// 라이브러리 추가 
+	// VO 수정
+	// Service 수정
+	// SecurityConfig 추가
+	
+	
 	@Bean
 	WebSecurityCustomizer webSecurityCustomizer() throws Exception {
 		//Security에서 무시할 것들

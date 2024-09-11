@@ -1,6 +1,13 @@
 package com.seonhui.app.members;
 
+import java.util.Enumeration;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,6 +34,12 @@ public class MemberController {
 	private MemberService memberService;
 	
 	
+	@GetMapping("check")
+	public void check() throws Exception{
+		log.info("동시세션");
+	}
+	
+	
 	@GetMapping("update")
 	public String update(HttpSession session, Model model)throws Exception{
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
@@ -45,7 +58,27 @@ public class MemberController {
 	}
 	
 	@GetMapping("mypage")
-	public void mypage()throws Exception{
+	public void mypage(HttpSession session)throws Exception{
+		Enumeration<String> en = session.getAttributeNames();
+		while(en.hasMoreElements()) {
+			String name = en.nextElement();
+			log.info("Name: {} ", name); // SPRING_SECURITY_CONTEXT 
+		}
+		
+		// 로그인한 사용자의 정보를 확인하고 싶을 때
+		Object obj = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		log.info("OBJ : {} ", obj.getClass());
+		SecurityContextImpl sc = (SecurityContextImpl)obj;
+		log.info("Security Context: {}", sc);
+		
+		SecurityContext context = SecurityContextHolder.getContext();
+		log.info("context: {}", context);
+		
+		Authentication authentication= context.getAuthentication();
+		MemberVO memberVO = (MemberVO)authentication.getPrincipal();
+		
+		log.info("MemberVO: {}", memberVO);
+		log.info("Name: {}", authentication.getName());
 		
 	}
 	
@@ -77,8 +110,25 @@ public class MemberController {
 	//detail
 	
 	@GetMapping("login")
-	public void login() throws Exception {
+	public String login(String message, Model model) throws Exception {
+		model.addAttribute("message", message);
 		
+		// 뒤로가기 방지
+		
+		SecurityContext context = SecurityContextHolder.getContext();
+		log.info("context: {}", context);
+		
+		if(context == null) {
+			return "member/login";
+		}
+		
+		String user = context.getAuthentication().getPrincipal().toString();
+		if(user.equals("anonymousUser")) {
+			return "member/login";
+		}
+		log.info("user: {}", user);
+		
+		return "redirect:/";
 	}
 	
 //	@PostMapping("login")
@@ -93,11 +143,11 @@ public class MemberController {
 //	}
 	
 	//logout
-	@GetMapping("logout")
-	public String logout(HttpSession session) throws Exception{
-		session.invalidate();
-		return "redirect:../";
-	}
+//	@GetMapping("logout")
+//	public String logout(HttpSession session) throws Exception{
+//		session.invalidate();
+//		return "redirect:../";
+//	}
 	
 	
 }

@@ -24,6 +24,7 @@
 	
 	<sec:authorize access="isAuthenticated()">
 		<h1>로그인 성공</h1>
+		<sec:authentication property="principal" var="member"/>
 		<spring:message code="member.login.message" arguments="${member.username},${member.email}" argumentSeparator=","></spring:message>
 		<c:forEach items="${member.vos}" var="v">
 			<h3>${v.roleName}</h3>

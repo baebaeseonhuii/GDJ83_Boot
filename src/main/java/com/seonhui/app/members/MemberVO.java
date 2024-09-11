@@ -54,22 +54,23 @@ public class MemberVO implements UserDetails{
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
+		// 사용자 계정의 유효 기간이 만료 되었습니다.
 		return true;
 	}
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
+		// 사용자 계정이 잠겨 있습니다.
 		return true;
 	}
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
+		// 자격 증명 유효 기간이 만료되었습니다.
 		return true;
 	}
 	
-	public boolean isEnabled() {
-		return true;
-	}
+	
 	
 	
 	

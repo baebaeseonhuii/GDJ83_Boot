@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity //기본 config 말고 내가 만든 config 사용
@@ -45,7 +46,8 @@ public class SecurityConfig {
 				.disable();
 		
 		//권한에 관련된 설정
-		security.authorizeHttpRequests(
+		security
+			.authorizeHttpRequests(
 					(authorizeRequest)->
 						authorizeRequest
 							.requestMatchers("/").permitAll()
@@ -64,6 +66,7 @@ public class SecurityConfig {
 				.formLogin(
 						login ->
 						login
+							// 개발자가 만든 로그인 페이지 사용
 							.loginPage("/member/login")
 							.defaultSuccessUrl("/") //로그인 성공시
 							.failureUrl("/member/login")
@@ -75,6 +78,21 @@ public class SecurityConfig {
 							
 							
 							)
+				
+				// logout설정
+				.logout(
+						logout -> 
+							logout
+								// RequestMatcher라는 객체 타입 ("url"), 로그아웃 url 지정
+								// 두개 다 같음
+								.logoutUrl("/member/logout")
+								//.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+								// 로그아웃 당신성공 했을때 보내는 주소
+								.logoutSuccessUrl("/")
+								.invalidateHttpSession(true) // true 면 세션 만료, false 면 세션 만료 X
+								//.deleteCookies("") // 쿠키 삭제하고 싶을 때
+				)
+				
 					
 		
 		; //authorizeHttpRequests 끝부분

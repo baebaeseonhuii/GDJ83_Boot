@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class MemberService implements UserDetailsService{
+public class MemberService{
 	
 	@Autowired
 	private MemberMapper memberMapper;
@@ -24,20 +24,6 @@ public class MemberService implements UserDetailsService{
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		MemberVO memberVO = new MemberVO();
-		memberVO.setUsername(username);
-		try {
-			memberVO = memberMapper.detail(memberVO);
-			log.info(memberVO.getPassword());
-			log.info(memberVO.getPassword());
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
-		return memberVO;
-	}
 	
 	//검증 메서드
 	public boolean memberValidate( MemberVO memberVO, BindingResult bindingResult) throws Exception{

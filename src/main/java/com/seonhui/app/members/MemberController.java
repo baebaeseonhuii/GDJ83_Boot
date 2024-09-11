@@ -62,7 +62,7 @@ public class MemberController {
 		if(check) {
 			return "member/add";
 		}
-		//int result = memberService.add(memberVO);
+		int result = memberService.add(memberVO);
 		
 //		if(bindingResult.hasErrors()) {
 //			log.error("username 비어있음");

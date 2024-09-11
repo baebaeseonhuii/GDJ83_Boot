@@ -35,7 +35,6 @@
  	</update>
  	
  	<insert id="add" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="boardNum">
- 	
  		INSERT INTO QNA VALUES(#{boardNum}, #{boardWriter}, #{boardTitle}, #{boardContents}, NOW(), #{ref}, 0,0)
  	</insert>
 <!--  		<selectKey order="BEFORE" keyProperty="boardNum" resultType="Long">

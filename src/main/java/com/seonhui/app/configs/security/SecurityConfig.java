@@ -33,6 +33,9 @@ public class SecurityConfig {
 	private SecurityLoginFailHandler failHandler;
 	
 	@Autowired
+	private SecurityLogoutSuccessHandler logoutHandler;
+	
+	@Autowired
 	private MemberUserService memberUserService;
 	
 	@Bean
@@ -104,6 +107,7 @@ public class SecurityConfig {
 								// RequestMatcher라는 객체 타입 ("url"), 로그아웃 url 지정
 								// 두개 다 같음
 								.logoutUrl("/member/logout")
+								.logoutSuccessHandler(logoutHandler)
 								//.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
 								// 로그아웃 당신성공 했을때 보내는 주소
 								.logoutSuccessUrl("/")
@@ -140,6 +144,17 @@ public class SecurityConfig {
 								.expiredUrl("/member/check")
 								
 								
+						)
+				
+				//Social Login
+				.oauth2Login(
+						oauth2 ->
+							oauth2
+								.userInfoEndpoint(
+										user -> user.userService(memberUserService)
+										)
+								
+						
 						)
 				
 					

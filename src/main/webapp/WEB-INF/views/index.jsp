@@ -19,6 +19,8 @@
 
 	<sec:authorize access="!isAuthenticated()">
 		<h1>로그인 하기 전</h1>
+		<a href="/member/login">Login</a>
+		<a href="/oauth2/authorization/kakao?prompt=login">Kakao Login</a>
 	</sec:authorize>
 	
 	
@@ -27,7 +29,7 @@
 		<sec:authentication property="principal" var="member"/>
 		<spring:message code="member.login.message" arguments="${member.username},${member.email}" argumentSeparator=","></spring:message>
 		<c:forEach items="${member.vos}" var="v">
-			<h3>${v.roleName}</h3>
+			<h3>당신의 권한: ${v.roleName}</h3>
 		</c:forEach>
 	</sec:authorize>
 	

@@ -20,7 +20,7 @@
 	<sec:authorize access="!isAuthenticated()">
 		<h1>로그인 하기 전</h1>
 		<a href="/member/login">Login</a>
-		<a href="/oauth2/authorization/kakao?prompt=login">Kakao Login</a>
+		<a href="/oauth2/authorization/kakao">Kakao Login</a>
 	</sec:authorize>
 	
 	
@@ -31,6 +31,8 @@
 		<c:forEach items="${member.vos}" var="v">
 			<h3>당신의 권한: ${v.roleName}</h3>
 		</c:forEach>
+		
+		<a href="/member/logout">logout</a>
 	</sec:authorize>
 	
 	<sec:authorize access="hasRole('ADMIN')">

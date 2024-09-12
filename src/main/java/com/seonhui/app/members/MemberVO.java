@@ -47,6 +47,13 @@ public class MemberVO implements UserDetails, OAuth2User{
 	//user의 토큰 정보 저장
 	private Map<String, Object> attributes;
 	
+	
+	private String accessToken;
+	
+	//sns 인지 일반로그인인지 구분
+	private String sns;
+	
+	
 	@Override
 	public Map<String, Object> getAttributes() {
 		return this.attributes;

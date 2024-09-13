@@ -33,10 +33,7 @@
 	<dependencies>
 	
 	<!-- Social Login API 추가 -->
-		<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-oauth2-client</artifactId>
-		</dependency>
+		
 	
 	<!--security tag -->
 		<dependency>
@@ -82,10 +79,7 @@
 		    <scope>provided</scope>
 		</dependency>
 	
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+		
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

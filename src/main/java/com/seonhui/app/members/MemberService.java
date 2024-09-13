@@ -53,6 +53,7 @@ public class MemberService{
 	
 	public int add(MemberVO memberVO)throws Exception{
 		memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
+		
 		int result = memberMapper.add(memberVO);
 		
 		Map<String, Object> map = new HashMap<>();

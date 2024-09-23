@@ -48,9 +48,11 @@ public class QnaController {
 	//jsp없애고 json형태로 데이터만 보냄 -> 프론트 개발자가 알아서 페이지를 만듦
 	//jsp가 없어졌으니까 Model이 더 이상 안필요함
 	//restful 서비스는 대체로 이런식임
-	@GetMapping("list")
+	@GetMapping("list/{page}")
 	@CrossOrigin
 	public List<QnaVO> getList(Pager pager)throws Exception{
+		//log.info("page: {}", page);
+		log.info("pager: {}", pager);
 		List<QnaVO> ar = qnaService.getList(pager);
 		
 		

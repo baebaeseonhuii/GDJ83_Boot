@@ -7,33 +7,37 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.seonhui.app.util.Pager;
 
 @SpringBootTest
+//@Transactional
 class QnaMapperTest {
 	
 	@Autowired
 	private QnaMapper qnaMapper;
 	
-//	@Test
-//	void addTest() throws Exception {
-//		for(int i = 3; i < 110; i++) {
-//		QnaVO qnaVO = new QnaVO();
-//		qnaVO.setBoardContents("c" + i);
-//		qnaVO.setBoardTitle("c3" + i);
-//		qnaVO.setBoardWriter("w3" + i);
-//		qnaVO.setRef((long)i);
-//		qnaVO.setStep(0L);
-//		qnaVO.setDepth(0L);
-//		int result = qnaMapper.add(qnaVO);
-//		if(i % 10 == 0) {
-//			Thread.sleep(500);
-//		}
-//		}
-//		
-//		
-//	}
+	@Test
+	//@Rollback(false)
+	void addTest() throws Exception {
+		for(int i = 1; i < 100; i++) {
+		QnaVO qnaVO = new QnaVO();
+		qnaVO.setBoardContents("c" + i);
+		qnaVO.setBoardTitle("c3" + i);
+		qnaVO.setBoardWriter("w3" + i);
+		qnaVO.setRef((long)i);
+		qnaVO.setStep(0L);
+		qnaVO.setDepth(0L);
+		int result = qnaMapper.add(qnaVO);
+		if(i % 10 == 0) {
+			Thread.sleep(500);
+		}
+		}
+		
+		
+	}
 
 	@Test
 	void getListTest() throws Exception{
